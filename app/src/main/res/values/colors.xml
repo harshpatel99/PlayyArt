@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#80D0C7</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#13547A</color>
+
+    <color name="light">#A8ACDB</color>
+
+    <color name="backgroundGradientDark">#121838</color>
+    <color name="backgroundGradientLight">#303378</color>
+    <color name="backgroundGradientLightTransparent">#99303378</color>
+
+    <color name="colorAccentTransparent">#55DBBE6E</color>
+
+    <color name="colorPrimaryComic">#E8DECB</color>
+    <color name="colorPrimaryDarkComic">#BCA985</color>
+    <color name="colorAccentComic">#343148</color>
+    <color name="colorPrimaryComicTransparent">#99D7C49E</color>
+    <color name="colorPrimaryDarkComicTransparent">#99533C0F</color>
+    <color name="dark">#533C0F</color>
+
+    <color name="gold_member_color">#D4AF37</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#404040</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="info_color">#9EB6B4</color>
+    <color name="divider_color">#BECDCB</color>
+    <color name="primaryMedium">#6D9FBC</color>
+    <color name="accentTransparent">#DD13547A</color>
+    <color name="accentMiddleTransparent">#8813547A</color>
+    <color name="semi_transparent">#DDFFFFFF</color>
+    <color name="primaryGray">#CCDFE8</color>
+    <color name="shimmer_color">#E4E4E4</color>
+
+</resources>

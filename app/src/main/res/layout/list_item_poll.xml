@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true">
+
+    <TextView
+        android:id="@+id/pollVoteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/vote"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/pollVoteCardA"
+        app:layout_constraintStart_toStartOf="@id/pollVoteCardA"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/pollVoteCardA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="52dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/pollVoteCardB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pollVoteTextView">
+
+        <ImageView
+            android:id="@+id/pollAImageView"
+            android:layout_width="160dp"
+            android:layout_height="300dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/pollVoteCardB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pollVoteCardA"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/pollBImageView"
+            android:layout_width="160dp"
+            android:layout_height="300dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/pollNowTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/now"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/pollVoteCardB"
+        app:layout_constraintStart_toStartOf="@id/pollVoteCardB"
+        app:layout_constraintTop_toBottomOf="@id/pollVoteCardB" />
+
+    <TextView
+        android:id="@+id/pollVSTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/vs"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/pollVoteCardA"
+        app:layout_constraintEnd_toEndOf="@id/pollVoteCardB"
+        app:layout_constraintStart_toStartOf="@id/pollVoteCardA"
+        app:layout_constraintTop_toTopOf="@id/pollVoteCardB" />
+
+    <ProgressBar
+        android:id="@+id/pollResultProgressBar"
+        style="@style/PollProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pollVoteCardA" />
+
+    <TextView
+        android:id="@+id/pollAPercentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/vs"
+        android:textAllCaps="true"
+        android:textColor="@color/backgroundGradientLight"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/pollResultProgressBar"
+        app:layout_constraintStart_toStartOf="@id/pollResultProgressBar"
+        app:layout_constraintTop_toTopOf="@id/pollResultProgressBar" />
+
+    <TextView
+        android:id="@+id/pollBPercentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/vs"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/pollResultProgressBar"
+        app:layout_constraintEnd_toEndOf="@id/pollResultProgressBar"
+        app:layout_constraintTop_toTopOf="@id/pollResultProgressBar" />
+
+    <ImageView
+        android:id="@+id/pollInfoButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_info_24_filled"
+        app:tint="@color/info_color"
+        app:layout_constraintBottom_toTopOf="@id/pollResultProgressBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

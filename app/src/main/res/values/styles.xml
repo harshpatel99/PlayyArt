@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="android:typeface">monospace</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="ComicTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:typeface">monospace</item>
+        <item name="colorPrimary">@color/colorPrimaryComic</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkComic</item>
+        <item name="colorAccent">@color/colorAccentComic</item>
+    </style>
+
+    <style name="bottomSheetCard" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="background">@drawable/background_gradient</item>
+    </style>
+
+    <style name="PollProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="android:progressDrawable">@drawable/poll_custom_progress_bar</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

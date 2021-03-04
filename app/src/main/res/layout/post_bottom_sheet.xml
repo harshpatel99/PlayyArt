@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/postBottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="400dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:showIn="@layout/activity_post">
+
+    <TextView
+        android:id="@+id/postOwnerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="314dp"
+        android:background="@drawable/rounded_square"
+        android:paddingStart="50dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/postSheetCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/postArtistProfilePicCard"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:elevation="@dimen/card_elevation"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:layout_constraintBottom_toBottomOf="@id/postOwnerNameTextView"
+        app:layout_constraintStart_toStartOf="@id/postOwnerNameTextView"
+        app:layout_constraintTop_toTopOf="@id/postOwnerNameTextView">
+
+        <ImageView
+            android:id="@+id/postArtistProfilePicImageView"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/postSheetCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postOwnerNameTextView"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut">
+
+        <ImageView
+            android:id="@+id/postSheetBackgroundImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:alpha="0.6"
+            android:background="@drawable/rounded_square" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/view_sheet_up"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/postSheetLikeFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:src="@drawable/ic_heart_24_regular"
+                app:backgroundTint="@color/white"
+                app:elevation="16dp"
+                app:layout_constraintEnd_toStartOf="@id/postSheetSetAsFAB"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/postSheetSetAsFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:src="@drawable/ic_image_24_filled"
+                app:backgroundTint="@color/white"
+                app:elevation="16dp"
+                app:layout_constraintEnd_toStartOf="@id/postSheetShareFAB"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/postSheetLikeFAB"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/postSheetShareFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:src="@drawable/ic_share_android_24_filled"
+                app:backgroundTint="@color/white"
+                app:elevation="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/postSheetSetAsFAB"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/postSheetWallpaper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/wallpaper"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/postSheetSetAsFAB"
+                app:layout_constraintStart_toStartOf="@id/postSheetSetAsFAB"
+                app:layout_constraintTop_toBottomOf="@id/postSheetSetAsFAB" />
+
+            <ImageView
+                android:id="@+id/postSheetViewsImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_eye_show_24_filled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postSheetWallpaper"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/postSheetViewsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/postSheetViewsImageView"
+                app:layout_constraintStart_toEndOf="@id/postSheetViewsImageView"
+                app:layout_constraintTop_toTopOf="@id/postSheetViewsImageView" />
+
+            <ImageView
+                android:id="@+id/postSheetLikesImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_heart_24_filled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postSheetViewsImageView"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/postSheetLikesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/postSheetLikesImageView"
+                app:layout_constraintStart_toEndOf="@id/postSheetLikesImageView"
+                app:layout_constraintTop_toTopOf="@id/postSheetLikesImageView" />
+
+            <ImageView
+                android:id="@+id/postSheetCategoryImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="48dp"
+                android:src="@drawable/ic_round_category_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postSheetWallpaper"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/postSheetCategoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/postSheetCategoryImageView"
+                app:layout_constraintEnd_toStartOf="@id/postSheetCategoryImageView"
+                app:layout_constraintTop_toTopOf="@id/postSheetCategoryImageView" />
+
+            <ImageView
+                android:id="@+id/postSheetCollectionImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="48dp"
+                android:src="@drawable/ic_app_folder_24_filled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postSheetViewsImageView"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/postSheetCollectionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/postSheetCollectionImageView"
+                app:layout_constraintEnd_toStartOf="@id/postSheetCollectionImageView"
+                app:layout_constraintTop_toTopOf="@id/postSheetCollectionImageView" />
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/postSheetBannerAdView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_unit_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postSheetCollectionTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

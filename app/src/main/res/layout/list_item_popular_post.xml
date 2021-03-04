@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/listItemHomePostCard"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_wall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/listItemPopularPostImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--<com.google.android.material.card.MaterialCardView
+        android:id="@+id/listItemPopularPostCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toTopOf="@id/listItemPopularPostLike"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/listItemPopularPostImage"
+                android:layout_width="match_parent"
+                android:layout_height="430dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/post_transparent_gradient_size"
+                android:background="@drawable/transparent_gradient"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/listItemHomePostLik"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_round_star_border_24"
+                android:tag="NotLiked"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/listItemPopularPostLikeCountTextView"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/listItemPopularPostLikeCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 Likes"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/listItemHomePostLik"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/listItemHomePostLik"
+                app:layout_constraintTop_toTopOf="@id/listItemHomePostLik"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/listItemPopularPostLike"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_round_star_border_24"
+        android:tag="NotLiked"
+        app:tint="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@id/listItemPopularPostSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/listItemPopularPostSave"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_round_bookmark_border_24"
+        android:tag="NotSaved"
+        app:tint="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@id/listItemPopularPostSetAs"
+        app:layout_constraintStart_toEndOf="@id/listItemPopularPostLike"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/listItemPopularPostSetAs"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_round_share_24"
+        app:tint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/listItemPopularPostSave"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/shimmerWallBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/shimmerWallTitle"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:src="@color/shimmer_color"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/shimmerWallBack"
+        app:layout_constraintStart_toEndOf="@id/shimmerWallBack"
+        app:layout_constraintBottom_toBottomOf="@id/shimmerWallBack"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem1"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerWallBack"
+        app:layout_constraintEnd_toStartOf="@id/shimmerSelectCollectionItem2"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem2"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerWallBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shimmerSelectCollectionItem1"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem3"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem1"
+        app:layout_constraintEnd_toStartOf="@id/shimmerSelectCollectionItem4"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem4"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shimmerSelectCollectionItem3"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem5"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem3"
+        app:layout_constraintEnd_toStartOf="@id/shimmerSelectCollectionItem6"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem6"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shimmerSelectCollectionItem5"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem7"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem5"
+        app:layout_constraintEnd_toStartOf="@id/shimmerSelectCollectionItem8"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/shimmerSelectCollectionItem8"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:src="@drawable/rounded_square_white"
+        app:tint="#E4E4E4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/shimmerSelectCollectionItem5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shimmerSelectCollectionItem7"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

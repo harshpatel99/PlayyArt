@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ArtistActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".activity.ArtistActivity">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/artistProfilePictureCard"
+            android:layout_width="@dimen/artist_profile_size"
+            android:layout_height="@dimen/artist_profile_size"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="32dp"
+            android:elevation="@dimen/card_elevation"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/artistProfilePictureImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/artistProfileNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="16dp"
+            android:text="Allen Solly"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/artistProfileUsernameTextView"
+            app:layout_constraintStart_toEndOf="@id/artistProfilePictureCard"
+            app:layout_constraintTop_toTopOf="@id/artistProfilePictureCard"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/artistProfileUsernameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="\@allensolly"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/artistProfileDescriptionTextView"
+            app:layout_constraintStart_toEndOf="@id/artistProfilePictureCard"
+            app:layout_constraintTop_toBottomOf="@id/artistProfileNameTextView"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/artistProfileDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
+            android:maxEms="12"
+            android:paddingBottom="8dp"
+            android:textAlignment="viewStart"
+            android:text="This is the description of the artist in under 300 characteers"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/artistProfilePictureCard"
+            app:layout_constraintTop_toBottomOf="@id/artistProfileUsernameTextView" />
+
+        <ImageView
+            android:id="@+id/artistProfileLinksBackgroundImageView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/rounded_border_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artistProfileDescriptionTextView" />
+
+        <ImageView
+            android:id="@+id/artistProfileLinkWebsiteImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_attach_24_filled"
+            app:layout_constraintBottom_toBottomOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintEnd_toStartOf="@id/artistProfileLinkTwitterImageView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintTop_toTopOf="@id/artistProfileLinksBackgroundImageView"
+            app:tint="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/artistProfileLinkTwitterImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_twitter"
+            app:layout_constraintBottom_toBottomOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintEnd_toStartOf="@id/artistProfileLinkInstagramImageView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/artistProfileLinkWebsiteImageView"
+            app:layout_constraintTop_toTopOf="@id/artistProfileLinksBackgroundImageView"
+            app:tint="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/artistProfileLinkInstagramImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_instagram"
+            app:layout_constraintBottom_toBottomOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintEnd_toStartOf="@id/artistProfileLinkFacebookImageView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/artistProfileLinkTwitterImageView"
+            app:layout_constraintTop_toTopOf="@id/artistProfileLinksBackgroundImageView"
+            app:tint="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/artistProfileLinkFacebookImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toBottomOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintEnd_toEndOf="@id/artistProfileLinksBackgroundImageView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/artistProfileLinkInstagramImageView"
+            app:layout_constraintTop_toTopOf="@id/artistProfileLinksBackgroundImageView"
+            app:tint="@color/colorAccent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/artistProfileRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="true"
+            android:overScrollMode="never"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artistProfileLinksBackgroundImageView" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/artistShimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:elevation="24dp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/shimmer_placeholder_layout_artist" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

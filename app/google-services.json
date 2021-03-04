@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "148020150038",
+    "firebase_url": "https://inart-900ca.firebaseio.com",
+    "project_id": "inart-900ca",
+    "storage_bucket": "inart-900ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148020150038:android:2ceb23d113437404c95a37",
+        "android_client_info": {
+          "package_name": "com.twogentle.wall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148020150038-uhmma9mqsdei76nhirtq0rn9m92pehmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwOVNi9623Q8FeVtBnXDFoZjNHfnbSSXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148020150038-uhmma9mqsdei76nhirtq0rn9m92pehmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

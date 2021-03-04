@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/listItemHomePostLockedCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_wall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/listItemPopularPostLockedImage"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/listItemWallPostLockImageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_lock_closed_24_filled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/listItemWallPostUnlockByTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/unlock_by_same_line"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/ic_play_24_filled"
+                app:drawableTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--<com.google.android.material.card.MaterialCardView
+        android:id="@+id/listItemPopularPostCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toTopOf="@id/listItemPopularPostLockedLike"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:id="@+id/listItemPopularPostLockedImage"
+                android:layout_width="match_parent"
+                android:layout_height="430dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/post_transparent_gradient_size"
+                android:background="@drawable/transparent_gradient"
+                android:rotation="180"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/listItemHomePostLik"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_round_star_border_24"
+                android:tag="NotLiked"
+                app:layout_constraintEnd_toStartOf="@id/listItemCollectionTextView"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/listItemCollectionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="20 Likes"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/listItemHomePostLik"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/listItemHomePostLik"
+                app:layout_constraintTop_toTopOf="@id/listItemHomePostLik"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/popularPostLockedVideoFAB"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/video"
+                android:textColor="@color/colorAccent"
+                android:visibility="invisible"
+                app:backgroundTint="@color/backgroundGradientDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/popularPostLockedUnlockText"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/listItemHomeUnlockPostLockedCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/semi_transparent"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/popularPostLockedUnlockText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center"
+                        android:text="@string/unlock_nby"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                        android:id="@+id/popularPostLockedShareFAB"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/art_30"
+                        android:textColor="@color/colorAccent"
+                        android:visibility="invisible"
+                        app:backgroundTint="@color/backgroundGradientDark"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@id/popularPostLockedUnlockText" />->
+
+                    <TextView
+                        android:id="@+id/homePostLockedVideoTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/rounded_square"
+                        android:paddingStart="24dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="22dp"
+                        android:paddingBottom="8dp"
+                        android:textAllCaps="true"
+                        android:text="@string/video"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/popularPostLockedUnlockText"
+                        app:layout_constraintEnd_toStartOf="@id/popularPostLockedUnlockText"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/popularPostLockedUnlockText" />
+
+
+                    <TextView
+                        android:id="@+id/homePostLockedShareTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rounded_square"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/art_30"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/popularPostLockedUnlockText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@id/popularPostLockedUnlockText"
+                        app:layout_constraintTop_toTopOf="@id/popularPostLockedUnlockText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/listItemPopularPostLockedLike"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_round_star_border_24"
+        android:tag="NotLiked"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/listItemPopularPostLockedSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/colorAccent" />
+
+    <ImageView
+        android:id="@+id/listItemPopularPostLockedSave"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_round_bookmark_border_24"
+        android:tag="NotSaved"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/listItemPopularPostLockedSetAs"
+        app:layout_constraintStart_toEndOf="@id/listItemPopularPostLockedLike"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/colorAccent" />
+
+    <ImageView
+        android:id="@+id/listItemPopularPostLockedSetAs"
+        android:layout_width="@dimen/iconPostActionWidth"
+        android:layout_height="@dimen/iconPostActionHeight"
+        android:layout_margin="4dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_round_share_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/listItemPopularPostLockedSave"
+        app:layout_constraintTop_toBottomOf="@id/listItemPopularPostCard"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/colorAccent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
