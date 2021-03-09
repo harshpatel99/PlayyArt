@@ -4,21 +4,6 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#13547A</color>
 
-    <color name="light">#A8ACDB</color>
-
-    <color name="backgroundGradientDark">#121838</color>
-    <color name="backgroundGradientLight">#303378</color>
-    <color name="backgroundGradientLightTransparent">#99303378</color>
-
-    <color name="colorAccentTransparent">#55DBBE6E</color>
-
-    <color name="colorPrimaryComic">#E8DECB</color>
-    <color name="colorPrimaryDarkComic">#BCA985</color>
-    <color name="colorAccentComic">#343148</color>
-    <color name="colorPrimaryComicTransparent">#99D7C49E</color>
-    <color name="colorPrimaryDarkComicTransparent">#99533C0F</color>
-    <color name="dark">#533C0F</color>
-
     <color name="gold_member_color">#D4AF37</color>
 
 

@@ -18,7 +18,7 @@
 
     <ProgressBar
         android:id="@+id/videoProgressBar"
-        style="@style/Widget.MaterialComponents.ProgressIndicator.Circular.Indeterminate"
+        style="@style/Widget.MaterialComponents.CircularProgressIndicator"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="8dp"

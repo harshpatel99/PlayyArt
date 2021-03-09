@@ -27,8 +27,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/listItemHomePostPictureCard"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="76dp"
@@ -40,9 +40,9 @@
 
                 <ImageView
                     android:id="@+id/artistProfilePictureImageView"
-                    android:layout_width="match_parent"
+                    android:layout_width="35dp"
                     android:scaleType="centerCrop"
-                    android:layout_height="match_parent" />
+                    android:layout_height="35dp" />
 
             </com.google.android.material.card.MaterialCardView>
 

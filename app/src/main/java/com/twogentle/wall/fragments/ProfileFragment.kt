@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
                 profileInitialName.text = it.result!!["name"].toString().substring(0, 1)
                     .toUpperCase(Locale.ROOT)
 
-                when (it.result!!["subscription"]) {
+                /*when (it.result!!["subscription"]) {
                     User.USER_SUBSCRIBED_ARTS -> {
                         profileBadgeImageView.setImageDrawable(
                             ContextCompat.getDrawable(
@@ -67,7 +67,7 @@ class ProfileFragment : Fragment() {
                         )
                         profileImageCardView.setCardBackgroundColor(ContextCompat.getColor(context!!,R.color.gold_member_color))
                     }
-                }
+                }*/
             }
         }
 

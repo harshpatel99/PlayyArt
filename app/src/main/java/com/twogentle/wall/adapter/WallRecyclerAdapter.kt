@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
@@ -220,6 +223,9 @@ class WallRecyclerAdapter(
     }
 
     class PostLockedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        lateinit var rewardedAd : RewardedAd
+
         fun bindViews(context: Context, activity: AppCompatActivity, data: WallData) {
             val imageView = itemView.findViewById<ImageView>(R.id.listItemWallPostImageView)
             val lockImageView = itemView.findViewById<ImageView>(R.id.listItemWallPostLockImageView)
@@ -235,108 +241,95 @@ class WallRecyclerAdapter(
                 .placeholder(R.drawable.loading_dots)
                 .into(imageView)
 
-            var isUnlocked = false
-
             val firestore = FirebaseFirestore.getInstance()
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
             imageView.setOnClickListener {
 
-                val rewardedAd = RewardedAd(context, context.getString(R.string.video_unit_id))
-                rewardedAd.loadAd(AdRequest.Builder().build(), object : RewardedAdLoadCallback() {})
+                val dialogBuilder = AlertDialog.Builder(context)
+                dialogBuilder.setCancelable(false)
+                dialogBuilder.setView(R.layout.progress_dialog_loading_ad)
+                val dialog = dialogBuilder.create()
+                dialog.show()
 
-                val adCallback = object : RewardedAdCallback() {
-                    override fun onUserEarnedReward(p0: RewardItem) {
-                        isUnlocked = true
-                        firestore.collection("posts")
-                            .document(data.id)
-                            .update(
-                                "userUnlocked",
-                                FieldValue.arrayUnion(uid)
-                            )
-                        Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
-                        lockImageView.visibility = View.GONE
-                        unlockByTextView.visibility = View.GONE
-
-                        var isLiked = "NotLiked"
-                        var isSaved = "NotSaved"
-
-                        data.post!!.userLiked!!.forEach {
-                            if (it == uid) {
-                                isLiked = "Liked"
-                            }
-                        }
-
-                        data.post!!.userSaved!!.forEach {
-                            if (it == uid) {
-                                isSaved = "Saved"
-                            }
-                        }
-
-                        val intent = Intent(context, PostActivity::class.java)
-                        intent.putExtra("postData", data.post)
-                        intent.putExtra("postLiked", isLiked)
-                        intent.putExtra("postSaved", isSaved)
-                        context.startActivity(intent)
-
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (dialog.isShowing) {
+                        dialog.dismiss()
+                        Toast.makeText(
+                            context,
+                            "Loading Timeout! Please try again later",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-                }
+                }, 9000)
 
-                val builder = MaterialAlertDialogBuilder(context, R.style.DialogTheme)
-                builder.setTitle("Locked Post")
-                builder.setMessage("Unlock it permanently by watching a small video.")
-                builder.setPositiveButton("Unlock") { dialogInterface, _ ->
+                val fullScreenContent = object : FullScreenContentCallback() {}
 
-                    dialogInterface.dismiss()
+                RewardedAd.load(context,
+                    context.getString(R.string.video_unit_id),
+                    AdRequest.Builder().build(),
+                    object : RewardedAdLoadCallback() {
+                        override fun onAdLoaded(p0: RewardedAd) {
+                            super.onAdLoaded(p0)
+                            rewardedAd = p0
+                            rewardedAd.fullScreenContentCallback = fullScreenContent
 
-                    val dialogBuilder = AlertDialog.Builder(context)
-                    dialogBuilder.setCancelable(false)
-                    dialogBuilder.setView(R.layout.progress_dialog_loading_ad)
-                    val dialog = dialogBuilder.create()
-                    dialog.show()
+                            rewardedAd.show(activity) {
+                                firestore.collection("posts")
+                                    .document(data.id)
+                                    .update(
+                                        "userUnlocked",
+                                        FieldValue.arrayUnion(uid)
+                                    )
+                                Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
+                                lockImageView.visibility = View.GONE
+                                unlockByTextView.visibility = View.GONE
 
-                    Handler().postDelayed({
-                        if (dialog.isShowing) {
+                                var isLiked = "NotLiked"
+                                var isSaved = "NotSaved"
+
+                                data.post!!.userLiked!!.forEach {
+                                    if (it == uid) {
+                                        isLiked = "Liked"
+                                    }
+                                }
+
+                                data.post!!.userSaved!!.forEach {
+                                    if (it == uid) {
+                                        isSaved = "Saved"
+                                    }
+                                }
+
+                                imageView.setOnClickListener {
+                                    val intent = Intent(context, PostActivity::class.java)
+                                    intent.putExtra("postData", data.post)
+                                    intent.putExtra("postLiked", isLiked)
+                                    intent.putExtra("postSaved", isSaved)
+                                    context.startActivity(intent)
+                                }
+
+                                val intent = Intent(context, PostActivity::class.java)
+                                intent.putExtra("postData", data.post)
+                                intent.putExtra("postLiked", isLiked)
+                                intent.putExtra("postSaved", isSaved)
+                                context.startActivity(intent)
+
+                            }
                             dialog.dismiss()
+                        }
+
+                        override fun onAdFailedToLoad(p0: LoadAdError) {
+                            super.onAdFailedToLoad(p0)
                             Toast.makeText(
                                 context,
-                                "Loading Timeout! Please try again later",
-                                Toast.LENGTH_LONG
+                                "Unable to load ad! Please try again later.",
+                                Toast.LENGTH_SHORT
                             ).show()
-                        }
-                    }, 9000)
-
-                    if (isUnlocked) {
-                        var isLiked = "NotLiked"
-                        var isSaved = "NotSaved"
-
-                        data.post!!.userLiked!!.forEach {
-                            if (it == uid) {
-                                isLiked = "Liked"
-                            }
+                            dialog.dismiss()
                         }
 
-                        data.post!!.userSaved!!.forEach {
-                            if (it == uid) {
-                                isSaved = "Saved"
-                            }
-                        }
-
-                        val intent = Intent(context, PostActivity::class.java)
-                        intent.putExtra("postData", data.post)
-                        intent.putExtra("postLiked", isLiked)
-                        intent.putExtra("postSaved", isSaved)
-                        context.startActivity(intent)
-                    } else {
-                        if (rewardedAd.isLoaded)
-                            rewardedAd.show(activity, adCallback)
-                        else
-                            Toast.makeText(context, "Ad is being loaded!", Toast.LENGTH_SHORT).show()
                     }
-                }.setNegativeButton("Cancel") { dialogInterface, _ ->
-                    dialogInterface.dismiss()
-                }
-                builder.show()
+                )
             }
 
 

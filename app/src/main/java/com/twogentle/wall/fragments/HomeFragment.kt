@@ -241,6 +241,7 @@ class HomeFragment : Fragment() {
         }
 
         adapter = HomeRecyclerAdapter(context!!, activity as MainActivity, data)
+        adapter.setHasStableIds(true)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
@@ -281,6 +282,7 @@ class HomeFragment : Fragment() {
             }
         }
 
+        adapter.setHasStableIds(true)
         recyclerView.adapter = adapter
         recyclerView.hasFixedSize()
         recyclerView.layoutManager =

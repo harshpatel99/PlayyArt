@@ -10,13 +10,6 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
-    <style name="ComicTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:typeface">monospace</item>
-        <item name="colorPrimary">@color/colorPrimaryComic</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkComic</item>
-        <item name="colorAccent">@color/colorAccentComic</item>
-    </style>
-
     <style name="bottomSheetCard" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
         </item>
@@ -33,7 +26,6 @@
     <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="background">@drawable/background_gradient</item>
     </style>
 
     <style name="PollProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">

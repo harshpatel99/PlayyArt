@@ -9,7 +9,7 @@
             android:tint="?attr/colorControlNormal">
             <corners android:radius="8dp" />
             <size android:height="35dp" />
-            <solid android:color="@color/light" />
+            <solid android:color="@color/colorAccent" />
         </shape>
     </item>
 
@@ -22,7 +22,7 @@
                 android:tint="?attr/colorControlHighlight">
                 <corners android:radius="8dp" />
                 <size android:height="35dp" />
-                <solid android:color="@color/light" />
+                <solid android:color="@color/colorAccent" />
             </shape>
         </scale>
     </item>

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -16,15 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.formats.UnifiedNativeAd
-import com.google.android.gms.ads.formats.UnifiedNativeAdView
-import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
@@ -128,26 +122,23 @@ class HomeRecyclerAdapter(
             )
             TYPE_LOADING -> (holder as LoadingViewHolder).bindViews()
             TYPE_NATIVE_AD -> {
-                val nativeAd = data[position] as UnifiedNativeAd
-                populateNativeAdView(nativeAd, (holder as UnifiedNativeAdViewHolder).getAdView())
+                //val nativeAd = data[position] as UnifiedNativeAd
+                //populateNativeAdView(nativeAd, (holder as UnifiedNativeAdViewHolder).getAdView())
             }
             else -> (holder as UnavailableViewHolder).bindViews(context)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (data[position] is UnifiedNativeAd)
-            TYPE_NATIVE_AD
-        else
-            when ((data[position] as Post).postType) {
-                Post.TYPE_TITLE -> TYPE_TITLE
-                Post.TYPE_POST -> TYPE_POST
-                Post.TYPE_POST_LOCKED -> TYPE_POST_LOCKED
-                Post.TYPE_VIDEO -> TYPE_VIDEO
-                Post.TYPE_LOADING -> TYPE_LOADING
-                Post.TYPE_NATIVE_AD -> TYPE_NATIVE_AD
-                else -> TYPE_UNAVAILABLE
-            }
+        return when ((data[position] as Post).postType) {
+            Post.TYPE_TITLE -> TYPE_TITLE
+            Post.TYPE_POST -> TYPE_POST
+            Post.TYPE_POST_LOCKED -> TYPE_POST_LOCKED
+            Post.TYPE_VIDEO -> TYPE_VIDEO
+            Post.TYPE_LOADING -> TYPE_LOADING
+            Post.TYPE_NATIVE_AD -> TYPE_NATIVE_AD
+            else -> TYPE_UNAVAILABLE
+        }
     }
 
     class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -179,9 +170,12 @@ class HomeRecyclerAdapter(
             val thumbnailImageView =
                 itemView.findViewById<ImageView>(R.id.listItemHomeVideoPlayerThumbnail)
 
-            val profilePictureCard = itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
-            val profilePictureImageView = itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
-            val profileNameTextView = itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
+            val profilePictureCard =
+                itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
+            val profilePictureImageView =
+                itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
+            val profileNameTextView =
+                itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
             val videoPlay = itemView.findViewById<ImageView>(R.id.listItemHomeVideoPlayImageView)
             val videoSave = itemView.findViewById<ImageView>(R.id.listItemHomeVideoSave)
             val videoShare = itemView.findViewById<ImageView>(R.id.listItemHomeVideoShare)
@@ -192,6 +186,8 @@ class HomeRecyclerAdapter(
             Glide.with(context)
                 .load(data.artistProfilePic)
                 .apply(requestOption)
+                .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(profilePictureImageView)
 
@@ -231,6 +227,7 @@ class HomeRecyclerAdapter(
                 .load(data.thumbnail)
                 .apply(requestOptions)
                 .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(thumbnailImageView)
 
@@ -314,8 +311,10 @@ class HomeRecyclerAdapter(
             val progressBar = dialogView.findViewById<ProgressBar>(R.id.layoutVideoProgressBar)
             val infoView = dialogView.findViewById<ImageView>(R.id.layoutVideoInfo)
 
-            val profilePictureCard = itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
-            val profileNameTextView = itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
+            val profilePictureCard =
+                itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
+            val profileNameTextView =
+                itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
 
             profileNameTextView.text = data.artistName
 
@@ -415,9 +414,12 @@ class HomeRecyclerAdapter(
             val saveButton = itemView.findViewById<ImageView>(R.id.listItemHomePostSave)
             val shareButton = itemView.findViewById<ImageView>(R.id.listItemHomePostSetAs)
 
-            val profilePictureCard = itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
-            val profileNameTextView = itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
-            val profilePictureImageView = itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
+            val profilePictureCard =
+                itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
+            val profileNameTextView =
+                itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
+            val profilePictureImageView =
+                itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
 
             profileNameTextView.text = data.artistName
 
@@ -426,6 +428,8 @@ class HomeRecyclerAdapter(
             Glide.with(context)
                 .load(data.artistProfilePic)
                 .apply(requestOption)
+                .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(profilePictureImageView)
 
@@ -458,6 +462,7 @@ class HomeRecyclerAdapter(
                 .load(data.url)
                 .apply(requestOptions)
                 .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(imageView)
 
@@ -613,28 +618,37 @@ class HomeRecyclerAdapter(
     }
 
     class PostLockedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        lateinit var rewardedAd: RewardedAd
+
         fun bindViews(
             context: Context,
             activity: FragmentActivity,
             postData: Post
         ) {
             val imageView = itemView.findViewById<ImageView>(R.id.listItemHomePostLockedImage)
-            val unlockPostCard = itemView.findViewById<MaterialCardView>(R.id.listItemHomeUnlockPostLockedCard)
+            val unlockPostCard =
+                itemView.findViewById<MaterialCardView>(R.id.listItemHomeUnlockPostLockedCard)
             val videoFab = itemView.findViewById<TextView>(R.id.homePostLockedVideoTextView)
             val unlockTextView = itemView.findViewById<TextView>(R.id.homePostLockedUnlockText)
             val saveButton = itemView.findViewById<ImageView>(R.id.listItemHomePostLockedSave)
             val likeButton = itemView.findViewById<ImageView>(R.id.listItemHomePostLockedLike)
             val shareButton = itemView.findViewById<ImageView>(R.id.listItemHomePostLockedSetAs)
 
-            val profilePictureCard = itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
-            val profileNameTextView = itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
-            val profilePictureImageView = itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
+            val profilePictureCard =
+                itemView.findViewById<MaterialCardView>(R.id.listItemHomePostPictureCard)
+            val profileNameTextView =
+                itemView.findViewById<TextView>(R.id.listItemHomePostProfileNameTextView)
+            val profilePictureImageView =
+                itemView.findViewById<ImageView>(R.id.artistProfilePictureImageView)
 
             val requestOption = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
                 .override(profilePictureImageView.width, profilePictureImageView.height)
             Glide.with(context)
                 .load(postData.artistProfilePic)
                 .apply(requestOption)
+                .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(profilePictureImageView)
 
@@ -662,7 +676,6 @@ class HomeRecyclerAdapter(
                 activity.startActivity(intent)
             }
 
-            var rewardedAd = RewardedAd(context, context.getString(R.string.video_unit_id))
             val firestore = FirebaseFirestore.getInstance()
 
             val uid = FirebaseAuth.getInstance().uid.toString()
@@ -673,6 +686,7 @@ class HomeRecyclerAdapter(
                 .load(postData.url)
                 .apply(requestOptions)
                 .centerCrop()
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.loading_dots)
                 .into(imageView)
 
@@ -684,7 +698,52 @@ class HomeRecyclerAdapter(
                 val dialog = builder.create()
                 dialog.show()
 
-                Handler().postDelayed({
+                val fullScreenContent = object : FullScreenContentCallback() {}
+
+                RewardedAd.load(context,
+                    context.getString(R.string.video_unit_id),
+                    AdRequest.Builder().build(),
+                    object : RewardedAdLoadCallback() {
+                        override fun onAdLoaded(p0: RewardedAd) {
+                            super.onAdLoaded(p0)
+                            rewardedAd = p0
+                            rewardedAd.fullScreenContentCallback = fullScreenContent
+
+                            rewardedAd.show(activity) {
+                                firestore.collection("posts")
+                                    .document(postData.id!!)
+                                    .update(
+                                        "userUnlocked",
+                                        FieldValue.arrayUnion(FirebaseAuth.getInstance().currentUser!!.uid)
+                                    )
+                                Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
+                                unlockTextView.visibility = View.GONE
+
+                                imageView.setOnClickListener {
+                                    val intent = Intent(activity, PostActivity::class.java)
+                                    intent.putExtra("postData", postData)
+                                    intent.putExtra("postLiked", likeButton.tag.toString())
+                                    intent.putExtra("postSaved", saveButton.tag.toString())
+                                    activity.startActivity(intent)
+                                }
+                            }
+                            dialog.dismiss()
+                        }
+
+                        override fun onAdFailedToLoad(p0: LoadAdError) {
+                            super.onAdFailedToLoad(p0)
+                            Toast.makeText(
+                                context,
+                                "Unable to load ad! Please try again later.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            dialog.dismiss()
+                        }
+
+                    }
+                )
+
+                Handler(Looper.getMainLooper()).postDelayed({
                     if (dialog.isShowing) {
                         dialog.dismiss()
                         Toast.makeText(
@@ -694,44 +753,6 @@ class HomeRecyclerAdapter(
                         ).show()
                     }
                 }, 9000)
-
-                val adCallback = object : RewardedAdCallback() {
-                    override fun onUserEarnedReward(p0: RewardItem) {
-
-                        firestore.collection("posts")
-                            .document(postData.id!!)
-                            .update(
-                                "userUnlocked",
-                                FieldValue.arrayUnion(FirebaseAuth.getInstance().currentUser!!.uid)
-                            )
-                        Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
-                        unlockTextView.visibility = View.GONE
-
-                        imageView.setOnClickListener {
-                            val intent = Intent(activity, PostActivity::class.java)
-                            intent.putExtra("postData", postData)
-                            intent.putExtra("postLiked", likeButton.tag.toString())
-                            intent.putExtra("postSaved", saveButton.tag.toString())
-                            activity.startActivity(intent)
-                        }
-                    }
-                }
-
-                rewardedAd.loadAd(AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
-                    override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
-                        Toast.makeText(
-                            context,
-                            "Unable to load ad! Please try again later.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        dialog.dismiss()
-                    }
-
-                    override fun onRewardedAdLoaded() {
-                        rewardedAd.show(activity, adCallback)
-                        dialog.dismiss()
-                    }
-                })
             }
 
             shareButton.setOnClickListener {
@@ -830,7 +851,7 @@ class HomeRecyclerAdapter(
                 val dialog = builder.create()
                 dialog.show()
 
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     if (dialog.isShowing) {
                         dialog.dismiss()
                         Toast.makeText(
@@ -841,62 +862,63 @@ class HomeRecyclerAdapter(
                     }
                 }, 9000)
 
-                val adCallback = object : RewardedAdCallback() {
-                    override fun onUserEarnedReward(p0: RewardItem) {
+                val fullScreenContent = object : FullScreenContentCallback() {}
 
-                        firestore.collection("posts")
-                            .document(postData.id!!)
-                            .update(
-                                "userUnlocked",
-                                FieldValue.arrayUnion(FirebaseAuth.getInstance().currentUser!!.uid)
-                            )
+                RewardedAd.load(context,
+                    context.getString(R.string.video_unit_id),
+                    AdRequest.Builder().build(),
+                    object : RewardedAdLoadCallback() {
+                        override fun onAdLoaded(p0: RewardedAd) {
+                            super.onAdLoaded(p0)
+                            rewardedAd = p0
+                            rewardedAd.fullScreenContentCallback = fullScreenContent
 
-                        Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
-                        saveButton.visibility = View.VISIBLE
-                        likeButton.visibility = View.VISIBLE
-                        videoFab.visibility = View.GONE
-                        unlockPostCard.visibility = View.GONE
-                        unlockTextView.visibility = View.GONE
+                            rewardedAd.show(activity) {
+                                firestore.collection("posts")
+                                    .document(postData.id!!)
+                                    .update(
+                                        "userUnlocked",
+                                        FieldValue.arrayUnion(FirebaseAuth.getInstance().currentUser!!.uid)
+                                    )
 
-                        imageView.setOnClickListener {
-                            val intent = Intent(activity, PostActivity::class.java)
-                            intent.putExtra("postData", postData)
-                            intent.putExtra("postLiked", likeButton.tag.toString())
-                            intent.putExtra("postSaved", saveButton.tag.toString())
-                            activity.startActivity(intent)
+                                Toast.makeText(context, "Post Unlocked!", Toast.LENGTH_SHORT).show()
+                                saveButton.visibility = View.VISIBLE
+                                likeButton.visibility = View.VISIBLE
+                                videoFab.visibility = View.GONE
+                                unlockPostCard.visibility = View.GONE
+                                unlockTextView.visibility = View.GONE
+
+                                imageView.setOnClickListener {
+                                    val intent = Intent(activity, PostActivity::class.java)
+                                    intent.putExtra("postData", postData)
+                                    intent.putExtra("postLiked", likeButton.tag.toString())
+                                    intent.putExtra("postSaved", saveButton.tag.toString())
+                                    activity.startActivity(intent)
+                                }
+                            }
+                            dialog.dismiss()
                         }
-                    }
 
-                    override fun onRewardedAdClosed() {
-                        rewardedAd = RewardedAd(context, context.getString(R.string.video_unit_id))
-                        rewardedAd.loadAd(
-                            AdRequest.Builder().build(),
-                            object : RewardedAdLoadCallback() {})
-                    }
-                }
+                        override fun onAdFailedToLoad(p0: LoadAdError) {
+                            super.onAdFailedToLoad(p0)
+                            Toast.makeText(
+                                context,
+                                "Unable to load ad! Please try again later.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            dialog.dismiss()
+                        }
 
-                rewardedAd.loadAd(AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
-                    override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
-                        Toast.makeText(
-                            context,
-                            "Unable to load ad! Please try again later.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        dialog.dismiss()
                     }
+                )
 
-                    override fun onRewardedAdLoaded() {
-                        rewardedAd.show(activity, adCallback)
-                        dialog.dismiss()
-                    }
-                })
             }
 
         }
 
     }
 
-    private fun populateNativeAdView(nativeAd: UnifiedNativeAd, adView: UnifiedNativeAdView) {
+    /*private fun populateNativeAdView(nativeAd: UnifiedNativeAd, adView: UnifiedNativeAdView) {
         (adView.headlineView as TextView).text = nativeAd.headline
         (adView.bodyView as TextView).text = nativeAd.body
         (adView.callToActionView as Button).text = nativeAd.callToAction
@@ -938,6 +960,6 @@ class HomeRecyclerAdapter(
         }
 
         adView.setNativeAd(nativeAd)
-    }
+    }*/
 
 }
